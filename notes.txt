@@ -1,0 +1,61 @@
+Recursion: Always be reducing the problem to a series of base cases
+
+Which rock is heaviest? Divide into two piles, pick the heaviest rock from each pile, and compare them -- and pick the heaviest rock in each pile by dividing that pile into two MORE piles...
+
+def fibonacci(n) # Inefficient, but a clean example
+    if n < 2
+        n
+    else
+        fibonacci(n-1) + fibonacci(n-2)
+    end
+end
+
+Lots of good sample recursive algorithms:
+
+http://www.codequizzes.com/computer-science/beginner/recursion
+
+(The Roman numeral conversion at the very end is clever!)
+
+
+
+Tail recursion (doing the calculation as you go along, rather than saving all of it for the end) is often faster:
+
+https://stackoverflow.com/questions/33923/what-is-tail-recursion
+
+Memoization seems to be a way of turning non-tail-recursive algorithms into tail-recursive algorithms
+
+
+
+Divide-and-conquer recursion (no notes, but good article):
+
+https://en.wikipedia.org/wiki/Divide_and_conquer_algorithm
+
+
+MapReduce: Map a series of key/value pairs in some way, getting a set of key2/value2 pairs. Then, group together (with "reduce") all key2s with the same value2. 
+
+Example: Given a list of people and their birthdays, return X lists of people, where X is the number of unique ages in the group, and each list contains only people of the same age
+
+Example II: Any word-count algorithm that finds how many times each word has been used (where the map function breaks lines into lists of words)
+
+
+Memoization: Store the results of expensive function calls for later retrieval
+
+Example: Not using a recursive factorial algorithm, but instead calculating factorials via:
+
+function factorial (n is a non-negative integer)
+    if n is 0 then
+        return 1 [by the convention that 0! = 1]
+    else if n is in lookup-table then
+        return lookup-table-value-for-n
+    else
+        let x = factorial(n – 1) times n [recursively invoke factorial
+                                         with the parameter 1 less than n]
+        store x in lookup-table in the nth slot [remember the result of n! for later]
+        return x
+    end if
+end function
+
+
+A more generalized memoization algorithm can be found on Wikipedia:
+
+https://en.wikipedia.org/wiki/Memoization#Automatic_memoization
